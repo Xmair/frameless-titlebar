@@ -2,11 +2,11 @@
   "name": "@umair/frameless-titlebar",
   "version": "2.1.5",
   "description": "Customizable titlebar for frameless Electron desktop applications",
-  "author": "Cristian006",
+  "author": "Xmair",
   "license": "MIT",
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/Cristian006/frameless-titlebar.git"
+    "url": "git+https://github.com/Xmair/frameless-titlebar.git"
   },
   "main": "dist/index.js",
   "module": "dist/index.es.js",
@@ -56,9 +56,9 @@
   },
   "types": "./dist/index.d.ts",
   "bugs": {
-    "url": "https://github.com/Cristian006/frameless-titlebar/issues"
+    "url": "https://github.com/Xmair/frameless-titlebar/issues"
   },
-  "homepage": "https://github.com/Cristian006/frameless-titlebar#readme",
+  "homepage": "https://github.com/Xmair/frameless-titlebar#readme",
   "directories": {
     "example": "example"
   }
