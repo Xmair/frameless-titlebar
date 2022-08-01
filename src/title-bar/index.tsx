@@ -78,7 +78,7 @@ const TitleBar = ({
             focused={focused}
             hasIcon={hasIcon}
             hasMenu={hasMenu}
-            ignoreMargin={ignoreTitleMargin}
+            ignoreMargin={ignoreTitleMargin ?? false}
           >
             {title}
           </Title>
