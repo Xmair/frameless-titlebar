@@ -1,14 +1,14 @@
-import React, { Fragment } from 'react';
-import cx from 'classnames';
-import WindowControls from './window-controls';
-import MenuBar from './menu-bar';
-import useWindowFocus from './effects/useWindowFocus';
-import styles from './style.css';
-import { useTheme, ThemeContext } from './theme';
-import Title from './components/title';
-import Bar from './components/bar';
-import { TitleBarProps } from './typings';
-import Logo from './components/logo';
+import React, { Fragment } from "react";
+import cx from "classnames";
+import WindowControls from "./window-controls";
+import MenuBar from "./menu-bar";
+import useWindowFocus from "./effects/useWindowFocus";
+import styles from "./style.css";
+import { useTheme, ThemeContext } from "./theme";
+import Title from "./components/title";
+import Bar from "./components/bar";
+import { TitleBarProps } from "./typings";
+import Logo from "./components/logo";
 
 const TitleBar = ({
   onMinimize,
@@ -25,23 +25,27 @@ const TitleBar = ({
   iconSrc,
   title,
   maximized,
-  currentWindow
+  currentWindow,
+  ignoreTitleMargin,
 }: TitleBarProps) => {
   const focused = useWindowFocus();
   const currentTheme = useTheme(theme, platform);
-  const isDarwin = platform === 'darwin';
-  const stacked = currentTheme?.menu?.style === 'stacked';
-  const vertical = currentTheme?.menu?.style === 'vertical';
-  const controlsRight = currentTheme?.controls?.layout === 'right';
+  const isDarwin = platform === "darwin";
+  const stacked = currentTheme?.menu?.style === "stacked";
+  const vertical = currentTheme?.menu?.style === "vertical";
+  const controlsRight = currentTheme?.controls?.layout === "right";
   const hasIcon = !!icon || !!iconSrc;
-  const hasMenu = !isDarwin && ((menu?.length ?? 0) > 0);
-  const hasTitle = !!(title && title !== '');
+  const hasMenu = !isDarwin && (menu?.length ?? 0) > 0;
+  const hasTitle = !!(title && title !== "");
   return (
     <ThemeContext.Provider value={currentTheme}>
       <Fragment>
         <Bar onDoubleClick={onDoubleClick}>
           <div className={cx(styles.ResizeHandle, styles.Top)} />
-          <div className={cx(styles.ResizeHandle, styles.Left)} style={{ height: theme?.bar?.height }} />
+          <div
+            className={cx(styles.ResizeHandle, styles.Left)}
+            style={{ height: theme?.bar?.height }}
+          />
           {!isDarwin && !controlsRight && (
             <WindowControls
               focused={focused}
@@ -53,9 +57,11 @@ const TitleBar = ({
               onClose={onClose}
             />
           )}
-          {
-            !vertical && hasIcon && <Logo src={iconSrc} hasTitle={hasTitle}>{icon}</Logo>
-          }
+          {!vertical && hasIcon && (
+            <Logo src={iconSrc} hasTitle={hasTitle}>
+              {icon}
+            </Logo>
+          )}
           {!isDarwin && !stacked && hasMenu && (
             <MenuBar
               focused={focused}
@@ -63,13 +69,16 @@ const TitleBar = ({
               currentWindow={currentWindow}
             />
           )}
-          {
-            vertical && hasIcon && <Logo src={iconSrc} hasTitle={hasTitle}>{icon}</Logo>
-          }
+          {vertical && hasIcon && (
+            <Logo src={iconSrc} hasTitle={hasTitle}>
+              {icon}
+            </Logo>
+          )}
           <Title
             focused={focused}
             hasIcon={hasIcon}
             hasMenu={hasMenu}
+            ignoreMargin={ignoreTitleMargin}
           >
             {title}
           </Title>
@@ -88,14 +97,13 @@ const TitleBar = ({
         </Bar>
         {!isDarwin && stacked && (
           <Bar bottomBar>
-            {
-              hasMenu &&
+            {hasMenu && (
               <MenuBar
                 focused={focused}
                 menu={menu}
                 currentWindow={currentWindow}
               />
-            }
+            )}
           </Bar>
         )}
       </Fragment>

@@ -4,7 +4,7 @@ export interface MenuItem {
   disabled?: boolean;
   hidden?: boolean;
   submenu?: MenuItem[];
-  type?: 'normal' | 'separator' | 'submenu' | 'checkbox' | 'radio';
+  type?: "normal" | "separator" | "submenu" | "checkbox" | "radio";
   checked?: boolean;
   icon?: string;
   before?: number | string;
@@ -13,7 +13,7 @@ export interface MenuItem {
   click?: (menu: MenuItem, browser: object | undefined, e: Event) => void;
 }
 
-export type Platform = 'win32' | 'linux' | 'darwin';
+export type Platform = "win32" | "linux" | "darwin";
 
 export interface ControlProps {
   onMinimize?: () => void;
@@ -38,15 +38,26 @@ export interface TitleBarProps extends ControlProps {
   iconSrc?: string;
   title?: string;
   currentWindow?: object;
+  ignoreTitleMargin?: boolean;
 }
 
-export type Palette = 'light' | 'dark';
-export type Align = 'left' | 'center' | 'right';
+export type Palette = "light" | "dark";
+export type Align = "left" | "center" | "right";
 export interface TitleTheme {
   color?: string;
   align?: Align;
   fontFamily?: string;
-  fontWeight?: number | "-moz-initial" | "inherit" | "initial" | "revert" | "unset" | "normal" | "bold" | "bolder" | "lighter";
+  fontWeight?:
+    | number
+    | "-moz-initial"
+    | "inherit"
+    | "initial"
+    | "revert"
+    | "unset"
+    | "normal"
+    | "bold"
+    | "bolder"
+    | "lighter";
 }
 
 export interface ColorMap {
@@ -80,7 +91,7 @@ export interface ControlButton {
   hover?: ColorMap;
 }
 
-export type ControlsLayout = 'right' | 'left';
+export type ControlsLayout = "right" | "left";
 
 export interface ControlsTheme {
   border?: string;
@@ -135,7 +146,7 @@ export interface OverlayTheme {
   zIndex?: number;
 }
 
-export type MenuStyle = 'default' | 'stacked' | 'vertical';
+export type MenuStyle = "default" | "stacked" | "vertical";
 
 export interface MenuTheme {
   palette?: Palette;
@@ -149,7 +160,6 @@ export interface MenuTheme {
   overlay?: OverlayTheme;
   marginRight?: number;
 }
-
 
 export interface TitleBarTheme {
   platform?: Platform;
@@ -236,6 +246,7 @@ export interface TitleProps {
   focused: boolean;
   hasIcon: boolean;
   hasMenu: boolean;
+  ignoreMargin: boolean;
   children?: React.ReactNode;
 }
 
